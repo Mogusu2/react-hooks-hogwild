@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 
 function AddHogForm({ addHog }) {
-  // Set up initial state for each form field
   const [newHog, setNewHog] = useState({
     name: '',
     specialty: '',
@@ -12,7 +11,6 @@ function AddHogForm({ addHog }) {
     highestMedal: ''
   });
 
-  // Handle form changes for each input
   function handleChange(e) {
     const { name, value, type, checked } = e.target;
     setNewHog({
@@ -21,15 +19,14 @@ function AddHogForm({ addHog }) {
     });
   }
 
-  // Handle form submission
   function handleSubmit(e) {
     e.preventDefault();
-    addHog(newHog); // Pass new hog data up to App component
-    setNewHog({ name: '', specialty: '', weight: 0, greased: false, image: '', highestMedal: '' }); // Reset form
+    addHog(newHog);
+    setNewHog({ name: '', specialty: '', weight: 0, greased: false, image: '', highestMedal: '' });
   }
 
   return (
-    <form onSubmit={handleSubmit} className="ui form">
+    <form onSubmit={handleSubmit} className="ui form" style={{ marginTop: '20px' }}>
       <div className="field">
         <label>Name</label>
         <input
@@ -84,9 +81,7 @@ function AddHogForm({ addHog }) {
           onChange={handleChange}
         />
       </div>
-      <button type="submit" className="ui button">
-        Add Hog
-      </button>
+      <button type="submit" className="ui button primary">Add Hog</button>
     </form>
   );
 }
