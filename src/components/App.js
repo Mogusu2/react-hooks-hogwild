@@ -21,14 +21,21 @@ function App() {
 	function hideHog(name) {
 	  setHiddenHogs([...hiddenHogs, name]);
 	}
+
+	// Filter and sort hogs based on criteria
+	const filteredHogs = hogs
+    .filter((hog) => (filterGreased ? hog.greased : true))
+    .sort((a, b) => {
+      if (sortCriteria === 'name') {
+        return a.name.localeCompare(b.name);
+      } else if (sortCriteria === 'weight') {
+        return a.weight - b.weight;
+      }
+      return 0;
+    });
   
 	return (
 	  <div className="App">
-		<FilterBar setFilterGreased={setFilterGreased} setSortCriteria={setSortCriteria} />
-  
-		{/* Render the HogList */}
-		<HogList filterGreased={filterGreased} sortCriteria={sortCriteria} hiddenHogs={hiddenHogs} hogs={hogs} />
-  
 		{/* Add Hog Button and Form Toggle */}
 		<button onClick={() => setShowAddForm(!showAddForm)} className="ui button primary">
 		  {showAddForm ? "Hide Add Hog Form" : "Add Hog"}
@@ -36,6 +43,11 @@ function App() {
   
 		{/* Conditionally render the AddHogForm based on showAddForm */}
 		{showAddForm && <AddHogForm addHog={addHog} />}
+  
+		<FilterBar setFilterGreased={setFilterGreased} setSortCriteria={setSortCriteria} />
+  
+		{/* Render the HogList */}
+		<HogList filterGreased={filterGreased} sortCriteria={sortCriteria} hiddenHogs={hiddenHogs} hogs={hogs} />
 	  </div>
 	);
   }
