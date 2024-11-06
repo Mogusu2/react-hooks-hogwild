@@ -1,8 +1,10 @@
 // src/App.js
 import React, { useState } from 'react';
-import HogList from './components/HogList';
-import FilterBar from './components/FilterBar';
-import AddHogForm from './components/AddHogForm';
+import HogList from './HoglList';
+import FilterBar from './FilterBar';
+import AddHogForm from './AddHogForm';
+import porkersData from '../porkers_data';
+
 
 function App() {
   const [filterGreased, setFilterGreased] = useState(false);
